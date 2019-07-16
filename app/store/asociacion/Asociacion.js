@@ -1,0 +1,25 @@
+Ext.define("ExtMVC.store.asociacion.Asociacion",{
+   extend:"Ext.data.Store",
+   model:"ExtMVC.model.asociacion.Asociacion",
+   sorters:[
+       {
+           property:"asociacionid",
+           direction:"asc"
+       }
+   ],
+   proxy:{
+       type:"ajax",
+       api:{
+           read:"resources/api/asociacion/lista"
+       },
+       writer:{
+           type:"json",
+           root:"data",
+           encode:true
+       },
+       reader:{
+           type:"json",
+           root:"data"
+       }
+   }
+});

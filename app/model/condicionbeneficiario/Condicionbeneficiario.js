@@ -1,0 +1,17 @@
+Ext.define("ExtMVC.model.condicionbeneficiario.Condicionbeneficiario",{
+   extend:"Ext.data.Model",
+   fields:[
+       {
+          name:"idconbene",
+          type:"int"
+       },
+       {
+           name:"descripcion",
+           type:"string"
+       },
+       {
+           name:"estado",
+           type:"int"
+       }
+   ]
+});

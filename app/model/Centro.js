@@ -1,0 +1,13 @@
+Ext.define("ExtMVC.model.Centro",{
+    extend:"Ext.data.Model",    
+    fields:[
+        {
+            name:"centroid",
+            type:"int"
+        },
+        {
+            name:"descripcion",
+            type:"string"
+        }
+    ]
+});

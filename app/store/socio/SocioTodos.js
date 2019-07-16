@@ -1,0 +1,36 @@
+Ext.define("ExtMVC.store.socio.SocioTodos",{
+   extend:"Ext.data.Store",
+   model:"ExtMVC.model.socio.Socio",
+   sorters:[
+       {
+           property:"socioid",
+           direction:"asc"
+       }
+   ],
+   proxy:
+       {
+           type:"ajax",
+           api:{
+               read:"resources/api/socio/listaTodos"
+           },
+           writer:{
+               type:"json",
+               root:"data",
+               encode:true
+           },
+           reader:{
+               type:"json",
+               root:"data"
+           },
+           extraParams:{
+               data:Ext.JSON.encode
+             (
+                     {
+                         cadena:""
+                     }
+             )
+           }
+       }
+       
+   
+});

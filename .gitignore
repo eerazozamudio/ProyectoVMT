@@ -1,0 +1,4 @@
+.sencha
+build
+resources/api/application/temp
+.vscode

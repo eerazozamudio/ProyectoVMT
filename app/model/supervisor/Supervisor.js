@@ -1,0 +1,37 @@
+Ext.define("ExtMVC.model.supervisor.Supervisor",{
+    extend:"Ext.data.Model",    
+    fields:[
+        {
+            name:"idsuper",
+            type:"int"
+        },
+        {
+            name:"nombres",
+            type:"string"
+        },
+        {
+           name:"apellidos",
+           type:"string"
+        },
+        {
+           name:"telefono",
+           type:"string"
+        },
+        {
+            name:"estado",
+            type:"int"
+        },
+        {
+            name:"supervisor",
+            type:"string"
+        },
+        {
+            name:"dni",
+            type:"string"
+        },
+        {
+            name:"direccion",
+            type:"string"
+        },
+    ]
+});

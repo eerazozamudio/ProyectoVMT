@@ -1,0 +1,31 @@
+Ext.define("ExtMVC.store.comite.ComiteTodos",{
+   extend:"Ext.data.Store",
+   model:"ExtMVC.model.comite.Comite",
+   sorters:[
+       {
+           property:"comiteid",
+           direction:"asc"
+       }
+   ],
+   proxy:
+       {
+           type:"ajax",
+           api:{
+               read:"resources/api/comite/lista"
+           },
+           writer:{
+               type:"json",
+               root:"data",
+               encode:true
+           },
+           reader:{
+               type:"json",
+               root:"data"
+           },
+           extraParams:{
+               centralid:0
+           }
+       }
+       
+   
+});

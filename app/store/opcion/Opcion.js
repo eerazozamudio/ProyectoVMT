@@ -1,0 +1,25 @@
+Ext.define("ExtMVC.store.opcion.Opcion",{
+   extend:"Ext.data.Store",
+   model:"ExtMVC.model.opcion.Opcion",
+   sorters:[
+       {
+           property:"opcionid",
+           direction:"asc"
+       }
+   ],
+   proxy:{
+       type:"ajax",
+       api:{
+           read:"resources/api/opcion/lista"
+       },
+       writer:{
+           type:"json",
+           root:"data",
+           encode:true
+       },
+       reader:{
+           type:"json",
+           root:"data"
+       }
+   }
+});

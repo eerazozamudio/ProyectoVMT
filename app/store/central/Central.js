@@ -1,0 +1,27 @@
+Ext.define("ExtMVC.store.central.Central",{
+   extend:"Ext.data.Store",
+   model:"ExtMVC.model.central.Central",
+   sorters:[
+       {
+           property:"descripcion",
+           direction:"asc"
+       }
+   ],
+   proxy:
+       {
+           type:"ajax",
+           api:{
+               read:"resources/api/central/lista"
+           },
+           writer:{
+               type:"json",
+               root:"data",
+               encode:true
+           },
+           reader:{
+               type:"json",
+               root:"data"
+           }
+       }
+   
+});

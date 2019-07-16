@@ -1,0 +1,13 @@
+Ext.define("ExtMVC.model.sector.Sector",{
+   extend:"Ext.data.Model",
+   fields:[
+       {
+           name:"sectorid",
+           type:"int"
+       },
+       {
+           name:"descripcion",
+           type:"string"
+       }
+   ]
+});

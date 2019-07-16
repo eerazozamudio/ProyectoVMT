@@ -1,0 +1,25 @@
+Ext.define("ExtMVC.store.asentamientohumano.AsentamientoHumano",{
+   extend:"Ext.data.Store",
+   model:"ExtMVC.model.asentamientohumano.AsentamientoHumano",
+   sorters:[
+       {
+           property:"asentamientohumanoid",
+           direction:"asc"
+       }
+   ],
+   proxy:{
+       type:"ajax",
+       api:{
+           read:"resources/api/asentamientohumano/lista"
+       },
+       writer:{
+           type:"json",
+           root:"data",
+           encode:true
+       },
+       reader:{
+           type:"json",
+           root:"data"
+       }
+   }
+});

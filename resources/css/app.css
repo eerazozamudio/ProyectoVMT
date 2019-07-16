@@ -1,0 +1,136 @@
+.icon-add{
+    background-image: url(../images/add.png)!important;
+}
+.icon-delete{
+    background-image: url(../images/delete.png)!important;
+}
+.icon-save{
+    background-image: url(../images/action_save.gif)!important;
+}
+.icon-cancel{
+    background-image: url(../images/cancel.png)!important;
+}
+.icon-user{
+    background-image: url(../images/user_suit.png)!important;
+}
+.icon-grid{
+    background-image: url(../images/table.png)!important;
+}
+.icon-edit{
+    background-image: url(../images/page_edit.png)!important;
+}
+.icon-reload{
+    background-image: url(../images/reload.png)!important;
+}
+.icon-menu-mantenimiento{
+    background-image: url(../images/database_edit.png)!important;
+}
+.icon-user-menu-item{
+    background-image: url(../images/user_suit_1.png)!important;
+}
+.icon-cliente-menu-item{
+    background-image: url(../images/group_gear.png)!important;
+}
+.icon-proveedor-menu-item{
+    background-image: url(../images/lorry.png)!important;
+}
+.icon-cpu{
+    background-image: url(../images/server_chart.png)!important;
+}
+.icon-moneda{
+    background-image: url(../images/money_dollar.png)!important;
+}
+.icon-paquete1{
+    background-image: url(../images/package.png)!important;
+}
+.icon-paquete2{
+    background-image: url(../images/package_green.png)!important;
+}
+.icon-estrella{
+    background-image: url(../images/star.png)!important;
+}
+.icon-excel{
+    background-image: url(../images/page_excel.png)!important;
+}
+.icon-tabla-apunte{
+    background-image: url(../images/paste_plain.png)!important;
+}
+.icon-carpeta{
+    background-image: url(../images/package_add.png)!important;
+}
+.icon-buscar{
+    background-image: url(../images/zoom.png)!important;
+}
+splashscreen {
+background-color: white;
+opacity: 1;
+}
+.x-mask-msg.splashscreen,
+.x-mask-msg.splashscreen div {
+font-size: 16px;
+font-weight: bold;
+padding: 30px 5px 5px 5px;
+border: none;
+background-color: transparent;
+background-position: top center;
+}
+.x-message-box .x-window-body .x-box-inner {
+min-height: 110px !important;
+}
+.x-splash-icon {
+background-image: url('../images/packt-logo.png') !important;
+margin-top: -30px;
+margin-bottom: 15px;
+height: 100px;
+}
+
+
+/*
+.x-border-layout-ct {
+    background-color: #004d6f;
+}*/
+
+/*
+.x-panel-header-text-container-default {
+    background-color: #004d6f;
+    color: #feaa39;
+    font-family: arial,helvetica,verdana,sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 15px;
+    padding: 1px 0 0;
+    text-align: center;
+    text-transform: none;
+}
+
+
+.x-panel-header-default {
+    background-color: #004c6e;
+    background-image: none;
+}
+
+.x-panel-header-default {
+    background-color: #004c6e;
+    background-image: none;
+}
+
+.x-panel-body-default {
+    background: white none repeat scroll 0 0;
+    border-color: #004c6e;
+    border-style: solid;
+    border-width: 1px;
+    color: black;
+    font-size: 13px;
+}
+
+.x-tab-bar-default {
+    background-color: #ffdc81;
+}
+
+.x-tab-default-top {
+    background-color: #fea73a;
+    border-radius: 0px 0px 0 0;
+    border-style: solid;
+    border-width: 0;
+    padding: 8px 12px 7px;
+}*/

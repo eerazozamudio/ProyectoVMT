@@ -1,0 +1,25 @@
+Ext.define("ExtMVC.store.etapa.Etapa",{
+   extend:"Ext.data.Store",
+   model:"ExtMVC.model.etapa.Etapa",
+   sorters:[
+       {
+           property:"etapaid",
+           direction:"asc"
+       }
+   ],
+   proxy:{
+       type:"ajax",
+       api:{
+           read:"resources/api/etapa/lista"
+       },
+       writer:{
+           type:"json",
+           root:"data",
+           encode:true
+       },
+       reader:{
+           type:"json",
+           root:"data"
+       }
+   }
+});
