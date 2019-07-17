@@ -3,7 +3,7 @@ Ext.define("ExtMVC.view.socio.SocioForm", {
     alias: "widget.socioform",
     title: "Socio",
     width: 650,
-    height: 620,
+    height: 400,
     modal: true,
     autoShow: true,
     resizable: false,
@@ -86,6 +86,7 @@ Ext.define("ExtMVC.view.socio.SocioForm", {
                 {
                     xtype: "fieldset",
                     padding: "10 10 10 10",
+                    hidden:true,
                     items: [
                         {
                             xtype: "combobox",
@@ -136,7 +137,8 @@ Ext.define("ExtMVC.view.socio.SocioForm", {
                             displayField: "descripcion",
                             editable: true,
                             minChars : 2,
-                            hidden: false
+                            hidden: false,
+                            value: 1
                         },
                         {
                             xtype: "combobox",
@@ -165,7 +167,8 @@ Ext.define("ExtMVC.view.socio.SocioForm", {
                             displayField: "descripcion",
                             editable: true,
                             minChars:2,
-                            hidden: true
+                            hidden: true,
+                            value: 1
                         }
 
                         ,
@@ -187,7 +190,8 @@ Ext.define("ExtMVC.view.socio.SocioForm", {
                                     displayField: "descripcion",
                                     editable: true,
                                     minChars:1,
-                                    hidden: true
+                                    hidden: true,
+                                    value: 1
                                 },
                                 {
                                     xtype: "combobox",
@@ -202,7 +206,8 @@ Ext.define("ExtMVC.view.socio.SocioForm", {
                                     displayField: "descripcion",
                                     editable: true,
                                     minChars:1,
-                                    labelAlign: "right"
+                                    labelAlign: "right",
+                                    value: 1
                                 }
                             ]
                         }
@@ -615,6 +620,7 @@ Ext.define("ExtMVC.view.socio.SocioForm", {
             title: "Referencia",
             margin: "0 15 0 15",
             padding: "5 10 10 10",
+            hidden:true,
             items: [
                 {
                     xtype: "combobox",
