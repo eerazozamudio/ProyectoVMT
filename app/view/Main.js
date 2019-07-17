@@ -24,12 +24,12 @@ Ext.define('ExtMVC.view.Main', {
                 {
                     xtype :'container',
                     flex: 1,
-                   // html:"<img src='resources/images/logo.jpg' width=100 height:100 >"
+                    html:"<img src='resources/images/logo.jpg' width=100 height:100 >"
                 },
                 {
                     xtype :'container',
                     flex: 2,
-                   // html:"<h2 style='color:#EFEFEF'>Empadronamiento 2019 Programa Vaso de Leche</h2>"
+                    html:"<h2 style='color:#EFEFEF'>Empadronamiento 2019 Programa Vaso de Leche</h2>"
                 }
             ]
             
@@ -70,7 +70,7 @@ Ext.define('ExtMVC.view.Main', {
                 items:[
                   {
                     xtype  :'image',
-                    //src    : 'resources/images/logo.jpg',
+                    src    : 'resources/images/logo.jpg',
                     flex: 1,
                     width  : 250,
                     height : 150,
