@@ -17,13 +17,13 @@ Ext.define("ExtMVC.controller.Menu", {
         if (record.data.parentId === "item_reporte_contraloria") {
            switch (record.data.id) {
              case "item_reporte_contraloria_mg":
-              getContraloriaReporte(treepanel,1,'REPORTE DE MADRES GESTANTES');
+              getContraloriaReporte(treepanel,3,'REPORTE DE MADRES GESTANTES');
              break;
              case "item_reporte_contraloria_ml":
               getContraloriaReporte(treepanel,2,'REPORTE DE MADRES LAPTANTES');
              break;
              case "item_reporte_contraloria_tbc":
-              getContraloriaReporte(treepanel,3,'REPORTE DE PACIENTES CON T.B.C.');
+              getContraloriaReporte(treepanel,7,'REPORTE DE PACIENTES CON T.B.C.');
              break;
            }
         }

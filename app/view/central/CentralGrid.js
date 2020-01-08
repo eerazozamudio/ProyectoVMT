@@ -1,7 +1,7 @@
  Ext.define("ExtMVC.view.central.CentralGrid", {
     extend: "Ext.grid.Panel",
     alias: "widget.centralgrid",
-    title: "Mantenimiento / Central",
+    title: "Mantenimiento / Centro Acopio",
     itemId : 'centralgrid',
     store: "ExtMVC.store.central.Central",
     layout: {

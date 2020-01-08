@@ -18,7 +18,7 @@ class Coordinador_model extends CI_Model{
     
     public function listaCombo(){
         
-        $sql="select idcoor,concat(apellidos,space(1),nombres)as coordinador from coordinador";
+        $sql="select idcoor,concat(IFNULL(apellidos,''),space(1),nombres)as coordinador from coordinador";
         $rs=$this->db->query($sql);
         $data["success"]=($rs->num_rows()>0)?TRUE:FALSE;
         $data["data"]=$rs->result();

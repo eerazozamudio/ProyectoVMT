@@ -1,7 +1,7 @@
  Ext.define("ExtMVC.view.central.CentralBuscarGrid", {
     extend: "Ext.grid.Panel",
     alias: "widget.centralbuscargrid",
-    title: "Mantenimiento / Central",
+    title: "Mantenimiento / Centro Acopio",
     store: "ExtMVC.store.central.Central",
     layout: {
         type: "fit"

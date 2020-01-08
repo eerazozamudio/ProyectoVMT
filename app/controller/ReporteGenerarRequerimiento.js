@@ -198,7 +198,6 @@ Ext.define("ExtMVC.controller.ReporteGenerarRequerimiento", {
         }
       },
     btnimprimir_onClick:function(btn,e,opc){
-
        var panel=btn.up("panel");
        if(panel.down("#centralid").getValue()!=null){
             id=panel.down("#centralid").getValue();

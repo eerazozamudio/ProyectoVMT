@@ -40,7 +40,7 @@ class Reportegenerarrequerimiento extends CI_Controller {
          $nsemana   = $this->input->get("nsemana");
          
          $rscentral = $this->central->listaXId(array("centralid" => $centralid));
-
+       
          $rs = $this->reportegenerarrequerimiento->generarRequerimiento(array("centralid" => $centralid));
          //$cordinadora=$rs["data"][0]->supervisor;
          //$cordinadora_dni=$rs["data"][0]->supervisordni;
@@ -750,43 +750,8 @@ class Reportegenerarrequerimiento extends CI_Controller {
         $rscentral = $this->central->listaXId(array("centralid" => $centralid));
         $rs = $this->reportegenerarrequerimiento->generarRequerimiento(array("centralid" => $centralid));
         $cordinadora=$rs["data"][0]->supervisor;
-        $cordinadora_dni=$rs["data"][0]->dn+
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        +
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        isuper;
+        $cordinadora_dni=$rs["data"][0]->dnisuper;
+    
         $fpdf = new FPDF("L", "mm", "A4");
         $fpdf->SetAutoPageBreak(true, 70);
         $fpdf->AddPage();
@@ -916,10 +881,10 @@ class Reportegenerarrequerimiento extends CI_Controller {
             $fpdf->cell(9, 5, 'Hojuela', 1, 0, "C", FALSE);
             $fpdf->cell(11, 5, 'Beneficarios', 1, 0, "C", FALSE);
             $fpdf->cell(9.5, 5, 'Tot. leche', 1, 0, "C", FALSE);
-            $fpdf->cell(9, 5, 'Cajas/47', 1, 0, "C", FALSE);
+            $fpdf->cell(9, 5, 'Cajas/24', 1, 0, "C", FALSE);
             $fpdf->cell(9, 5, 'Und/Lata', 1, 0, "C", FALSE);
             $fpdf->cell(11, 5, 'Tot. Hojuela', 1, 0, "C", FALSE);
-            $fpdf->cell(9, 5, 'Sacos/70', 1, 0, "C", FALSE);
+            $fpdf->cell(9, 5, 'Sacos/80', 1, 0, "C", FALSE);
             $fpdf->cell(9, 5, 'Und/Bolsa', 1, 0, "C", FALSE);
             $fpdf->cell(50, 5, ' ', 'LR', 0, "C", FALSE);
             $fpdf->cell(24, 5, ' ', 'LR', 1, "C", FALSE);

@@ -8,7 +8,7 @@ Ext.define("ExtMVC.view.reporte.ReporteRequerimientoIneiPanel",{
        {
            xtype:"toolbar",
            dock:"top",
-           height:65,
+           height:90,
            layout:{
                type:"vbox"
            },

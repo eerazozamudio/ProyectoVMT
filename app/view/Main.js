@@ -29,7 +29,7 @@ Ext.define('ExtMVC.view.Main', {
                 {
                     xtype :'container',
                     flex: 2,
-                    html:"<h2 style='color:#EFEFEF'>Empadronamiento 2019 Programa Vaso de Leche</h2>"
+                    html:"<h2 style='color:#EFEFEF'>Programa Vaso de Leche</h2>"
                 }
             ]
             

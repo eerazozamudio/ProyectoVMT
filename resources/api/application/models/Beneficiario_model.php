@@ -73,7 +73,8 @@ class Beneficiario_model extends CI_Model {
                 b.discapacidad,
                 b.sisof,
                 b.idconbene,
-                cb.descripcion as condicionbeneficiario
+                cb.descripcion as condicionbeneficiario,
+                date_format(b.fechaparto,'%d/%m/%Y') as fechaparto
                 from beneficiario b left join sexo s on b.sexoid=s.sexoid
                 left join condicionbeneficiario cb on cb.idconbene=b.idconbene
                 where b.estado=1 and b.socioid=?";
@@ -143,9 +144,9 @@ or soc.dni like ? and bene.estado=1 limit 1000";
 
     public function registrar($arreglo) {
         $sql = "insert into beneficiario
-                (socioid,apepater,apemater,nombre,dni,fechanaci,sexoid,observacion,discapacidad,sisof,idconbene)
+                (socioid,apepater,apemater,nombre,dni,fechanaci,sexoid,observacion,discapacidad,sisof,idconbene,fechaparto)
                 values
-                (?,?,?,?,?,?,?,?,?,?,?)";
+                (?,?,?,?,?,?,?,?,?,?,?,?)";
         $rs = $this->db->query($sql, $arreglo);
         $data["success"] = $rs;
         $data["ultimoid"] = $this->db->insert_id();
@@ -160,6 +161,7 @@ or soc.dni like ? and bene.estado=1 limit 1000";
     }
     
     public function actualizar($arreglo) {
+        
         $sql = "update beneficiario
                 set
                 apepater=?,
@@ -171,7 +173,8 @@ or soc.dni like ? and bene.estado=1 limit 1000";
                 observacion=?,
                 discapacidad=?,
                 sisof=?,
-                idconbene=?
+                idconbene=?,
+                fechaparto=?
                 where socioid=? and beneficiarioid=?";
         $rs = $this->db->query($sql, $arreglo);
         $data["success"] = $rs;

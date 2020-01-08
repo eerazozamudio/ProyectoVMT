@@ -25,11 +25,11 @@ Ext.define("ExtMVC.view.reporte.ReporteGenerarRequerimientoPanel", {
                                     itemId: "centralid",
                                     fieldLabel: "Centro Acopio",
                                     labelAlign: "right",
-                                    mode: "remote",
+                                    queryMode: "local",
                                     store: "ExtMVC.store.central.Central",
                                     valueField: "centralid",
                                     displayField: "descripcion",
-                                    editable: false,
+                                    editable: true,
                                     allowBlank: false,
                                     width: 400,
                                     labelWidth: 80

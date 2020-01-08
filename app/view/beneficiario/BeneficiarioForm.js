@@ -3,7 +3,7 @@ Ext.define("ExtMVC.view.beneficiario.BeneficiarioForm", {
     alias: "widget.beneficiarioform",
     title: "Beneficiario",
     width: 650,
-    height: 480,
+    height: 550,
     modal: true,
     autoShow: true,
     resizable: false,
@@ -120,6 +120,15 @@ Ext.define("ExtMVC.view.beneficiario.BeneficiarioForm", {
 
                         },
                         {
+                            xtype: "datefield",
+                            name: "fechaparto",
+                            itemId: "fechaparto",
+                            fieldLabel: "F.P.P",
+                            format: "d/m/Y",
+                            allowBlank: false,
+                            //value: new Date()
+                        },
+                        {
                             xtype:"checkboxfield",
                             fieldLabel:"Sisfoh",
                             itemId:"sisof",
@@ -153,7 +162,6 @@ Ext.define("ExtMVC.view.beneficiario.BeneficiarioForm", {
                     items: [
                         {
                             xtype: "textareafield",
-                            fieldLabel: "Observacion",
                             name: "observacion",
                             itemId: "observacion",
                             fieldStyle: "text-transform:uppercase",

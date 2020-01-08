@@ -245,6 +245,7 @@ Ext.define("ExtMVC.controller.Beneficiario", {
         win.down("#apepater").focus();
     },
     editar_onClick: function (btn, e, opc) {
+        
         var grid = btn.up("grid");
         var record = grid.getSelectionModel().getSelection();
         if (record.length > 0) {
@@ -272,6 +273,7 @@ Ext.define("ExtMVC.controller.Beneficiario", {
         win.down("#apepater").focus();
     },
     grabar_onClick: function (btn, e, opc) {
+        
         var win = btn.up("window");
         var form = win.down("form");
         var grid = Ext.ComponentQuery.query("beneficiariogrid")[0];
@@ -313,7 +315,8 @@ Ext.define("ExtMVC.controller.Beneficiario", {
                 "observacion": values.observacion,
                 "discapacidad":discapacidad,
                 "sisof":sisof,
-                "idconbene":values.idconbene
+                "idconbene":values.idconbene,
+                "fpp" : values.fechaparto
             };
 
             if (!record) {

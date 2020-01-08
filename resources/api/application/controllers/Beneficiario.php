@@ -67,6 +67,8 @@ class Beneficiario extends CI_Controller {
         $arreglo["discapacidad"] = $data->discapacidad;
         $arreglo["sisof"] = $data->sisof;
         $arreglo["idconbene"] = $data->idconbene;
+        $arreglo["fechaparto"] = $data->fpp;
+        
         $rs = $this->beneficiario->registrar($arreglo);
         echo json_encode($rs);
     }
@@ -91,9 +93,10 @@ class Beneficiario extends CI_Controller {
         $arreglo["discapacidad"] = $data->discapacidad;
         $arreglo["sisof"] = $data->sisof;
         $arreglo["idconbene"] = $data->idconbene;
+        $arreglo["fechaparto"] = invierte_date($data->fpp);
         $arreglo["socioid"] = $data->socioid;
         $arreglo["beneficiarioid"] = $data->beneficiarioid;
-
+        
         $rs = $this->beneficiario->actualizar($arreglo);
         echo json_encode($rs);
     }

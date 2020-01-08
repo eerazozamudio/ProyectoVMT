@@ -235,11 +235,11 @@ class Reporte extends CI_Controller {
         $fpdf->cell(20,5,'Provincia :',0,0,'L');
         $fpdf->cell(50,5,'LIMA',0,0,'L');
         $fpdf->cell(20,5,'Distrito :',0,0,'L');
-        $fpdf->cell(50,5,'VILLA EL SALVADOR',0,1,'L');
+        $fpdf->cell(50,5,'VILLA MARIA DEL TRIUNFO',0,1,'L');
 
         $fpdf->cell(30,5,utf8_decode('Empadronamiemto '),0,0,'L');
         $fpdf->cell(15,5,utf8_decode('Año :'),0,0,'L');
-        $fpdf->cell(15,5,'2018',1,0,'L');
+        $fpdf->cell(15,5,date('Y') ,1,0,'L');
         $fpdf->cell(20,5,'Semestre :',0,0,'L');
         $fpdf->cell(20,5,'',1,0,'L');
         $fpdf->cell(20,5,'Fecha :',0,0,'L');
@@ -439,7 +439,9 @@ class Reporte extends CI_Controller {
     public function imprimirReporteContraloria() {
 
         $id   = $this->input->get("condicion");
+       // echo $id;die();
         $rs   = $this->reportes->reporteContraloria($id);
+
         //$titulo = "PADRON DE SOCIOS POR CENTRALES Y COMITES - PROGRAMA DE ALIMENTACION Y VASO DE LECHE";
 
         $pdf = new FPDF("P", "mm", "A4");
@@ -452,9 +454,9 @@ class Reporte extends CI_Controller {
         $pdf->Image('../../resources/images/logo.jpg',5,5,20,'JPG');
         $pdf->Ln(5);
         switch ($id) {
-          case 1: $titulo = 'REPORTE DE MADRES GESTANTES'; break;
-          case 2: $titulo = 'REPORTE DE MADRES LAPTANTES'; break;
-          case 3: $titulo = 'REPORTE DE PACIENTES CON T.B.C.'; break;
+          case 3: $titulo = 'REPORTE DE MADRES GESTANTES'; break;
+          case 2: $titulo = 'REPORTE DE MADRES LACTANTES'; break;
+          case 7: $titulo = 'REPORTE DE PACIENTES CON T.B.C.'; break;
 
         }
         $pdf->cell(0, 8, $titulo, 0, 1, "C");
@@ -469,10 +471,11 @@ class Reporte extends CI_Controller {
         $pdf->cell(20,4,'Sexo',1,0,'C');
         $pdf->cell(10,4,'Edad',1,1,'C');
         $pdf->setFont("Arial", "", 7);
-        $i = 0;
-
+        $i = 1;
+        $cantidad = 0;
         foreach ($rs as $data) {
             $pdf->cell(10,4, $i++, 1, 0, "C");
+            $cantidad++;
             $pdf->cell(25,4, $data->central, 1, 0, "L");
             $pdf->cell(27,4,$data->codigointerno,1,0,'C');
             $pdf->cell(25,4,$data->sector,1,0,'C');
@@ -484,7 +487,7 @@ class Reporte extends CI_Controller {
           $pdf->Ln();
           $pdf->setFont("Arial", "B", 8);
           $pdf->cell(35,4,'Total Beneficiarios :',1,0,'L');
-          $pdf->cell(27,4,$i,1,1,'C');
+          $pdf->cell(27,4,$cantidad,1,1,'C');
 
         $pdf->Output();
     }
