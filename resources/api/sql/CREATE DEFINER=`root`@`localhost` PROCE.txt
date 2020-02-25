@@ -1,0 +1,48 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_estadistica_inei`(
+	IN _centralid INT,
+    IN _comiteid INT
+)
+BEGIN
+
+DROP TABLE IF EXISTS wr_reporte_temp;
+CREATE TEMPORARY TABLE IF NOT EXISTS wr_reporte_temp AS (
+
+ SELECT 
+		#ce.descripcion,
+        co.direccion ,
+        co.codigointerno,
+        co.comiteid,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 0 AND 0 THEN 1 ELSE 0  END) edad0,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 1 AND 1 THEN 1 ELSE 0  END) edad1,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 2 AND 2 THEN 1 ELSE 0  END) edad2,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 3 AND 3 THEN 1 ELSE 0  END) edad3,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 4 AND 4 THEN 1 ELSE 0  END) edad4,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 5 AND 5 THEN 1 ELSE 0  END) edad5,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 6 AND 7 THEN 1 ELSE 0  END) edad6,
+        SUM(CASE WHEN   b.idconbene = 3  THEN 1 ELSE 0  END) pptotalmg,
+        SUM(CASE WHEN   b.idconbene = 2  THEN 1 ELSE 0  END) pptotalml,
+        SUM(CASE WHEN   b.idconbene = 6  THEN 1 ELSE 0  END) pptotaldisca,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 8 AND 13 THEN 1 ELSE 0  END) sptotalninos713,
+        SUM(CASE WHEN   b.idconbene = 7  THEN 1 ELSE 0  END) sptotaltbc,
+         SUM(CASE WHEN   b.idconbene = 1  THEN 1 ELSE 0  END) sptotalamayor,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 55 AND 200 and b.sexoid=2 THEN 1 ELSE 0  END) amm,
+        SUM(CASE WHEN  TIMESTAMPDIFF(YEAR,b.fechanaci,CURDATE()) BETWEEN 60 AND 200 and b.sexoid=1 THEN 1 ELSE 0  END) amh
+        FROM beneficiario b
+        inner join socio s ON b.socioid = s.socioid  and s.estado = 1
+        inner join comite co on co.comiteid =s.comiteid
+        inner join central ce on ce.centralid = s.centralid
+        left join supervisor su on su.idsuper = co.idsuper
+        left join coordinador cor on cor.idcoor = co.idcoor
+        WHERE s.estado = 1 
+        and  b.estado = 1  and 
+        ((_centralid IS NULL) OR  (ce.centralid= _centralid))
+        AND ((_comiteid IS NULL) OR  (co.comiteid= _comiteid))
+        GROUP BY 
+        co.direccion,
+        co.codigointerno,
+         co.comiteid
+        order by co.comiteid
+);
+SELECT *, (edad0 + edad1 + edad2 + edad3 + edad4 + edad5 + edad6 + pptotalmg + pptotalml + pptotaldisca + sptotalninos713 + sptotaltbc + amm + amh + sptotalamayor) as SUMA FROM wr_reporte_temp;
+
+END

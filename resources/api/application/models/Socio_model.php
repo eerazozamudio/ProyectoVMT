@@ -174,6 +174,78 @@ left join referencia on socio.referenciaid=referencia.referenciaid where socio.c
         return $data;
     }
 
+    public function listaSocioPorCentral($arreglo) {
+        $sql = "select
+        conteo.tot,
+        socio.socioid,
+        socio.centralid,
+        central.descripcion as central,
+        socio.comiteid,
+        comite.codigointerno as codigointerno,
+        socio.apepater,
+        socio.apemater,
+        socio.nombre,
+        socio.dni,
+        socio.opcionid,
+        opcion.descripcion as opcion,
+        socio.sectorid,
+        sector.descripcion as sector,
+        socio.grupoid,
+        grupo.descripcion as grupo,
+        socio.etapaid,
+        etapa.descripcion as etapa,
+        socio.barrioid,
+        barrio.descripcion as barrio,
+        socio.parcelaid,
+        parcela.descripcion as parcela,
+        socio.asentamientohumanoid,
+        asentamientohumano.descripcion as asentamientohumano,
+        socio.asociacionid,
+        asociacion.descripcion as asociacion,
+        socio.cooperativaid,
+        cooperativa.descripcion as cooperativa,
+        socio.manzanaid,
+        manzana.descripcion as manzana,
+        socio.loteid,
+        lote.descripcion as lote,
+        socio.referenciaid,
+        referencia.descripcion as referencia,
+        socio.observacion,
+        case socio.opcionid 
+        when 1 then (select case when socio.sectorid  !=8 then (select concat(sector.descripcion,space(2),'GRUPO',space(1),grupo.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion)) when socio.sectorid =8 then  (select concat(sector.descripcion,space(2),'PARCELA',space(1),parcela.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion))  end)
+        when 2 then (select case when socio.etapaid  !=4 then (select concat('ETAPA',space(1),etapa.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion,space(2),' - ',space(1),'PACHACAMAC')) when socio.etapaid =4 then  (select concat('ETAPA',space(1),etapa.descripcion,space(2),sector.descripcion,space(2),'BARRIO ',space(1),barrio.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion,space(1),' - ',space(1),'PACHACAMAC'))  end)
+        when 3 then (select concat('AAHH.',space(1),asentamientohumano.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion))
+        when 4 then (select case when socio.asociacionid  !=12 then (select concat('ASOC. ',space(1),asociacion.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion)) when socio.asociacionid =12 then  (select concat('ASOC. ',space(1),asociacion.descripcion,space(2),'GRUPO',space(1),grupo.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion))  end)
+        when 5 then (select concat('Coopertiva ',space(1),cooperativa.descripcion,space(2),'Mz.',space(1),manzana.descripcion,space(1),'Lt.',space(1),lote.descripcion))
+        end as direccion
+        from socio 
+        left join central on socio.centralid=central.centralid
+        left join comite on socio.comiteid=comite.comiteid
+        left join opcion on socio.opcionid=opcion.opcionid
+        left join  sector on socio.sectorid=sector.sectorid
+        left join grupo on socio.grupoid=grupo.grupoid
+        left join etapa on socio.etapaid=etapa.etapaid
+        left join barrio on socio.barrioid=barrio.barrioid
+        left join parcela on socio.parcelaid=parcela.parcelaid
+        left join asentamientohumano on socio.asentamientohumanoid=asentamientohumano.asentamientohumanoid
+        left join asociacion on socio.asociacionid=asociacion.asociacionid
+        left join cooperativa on socio.cooperativaid=cooperativa.cooperativaid
+        left join manzana on socio.manzanaid=manzana.manzanaid
+        left join lote on socio.loteid=lote.loteid
+        left join referencia on socio.referenciaid=referencia.referenciaid 
+        left join (
+            select s.comiteid, count(b.beneficiarioid) tot from beneficiario b
+            left join socio s on s.socioid=b.socioid  
+            where b.estado =1
+            group by s.comiteid
+        ) conteo on conteo.comiteid=socio.comiteid
+        where socio.centralid=? and socio.estado=1";
+        $rs = $this->db->query($sql, $arreglo["centralid"]);
+        $data["success"] = ($rs->num_rows() > 0) ? TRUE : FALSE;
+        $data["data"] = $rs->result();
+        return $data;
+    }
+
     public function listaTodos($arreglo) {
 
         $sql = "select

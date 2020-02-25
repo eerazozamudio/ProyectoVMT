@@ -55,15 +55,21 @@ Ext.define("ExtMVC.view.reporte.socio.ReporteSocioPanel",{
                             xtype:"button",
                             itemId:"btnimprimir2",
                             text:"Imprimir Cantidad X Central",
-                            margin:"0 0 0 50"
+                            margin:"0 0 0 10"
                         },
                         {
                             xtype:"button",
                             itemId:"btnimprimir3",
                             text:"Imprimir Canttidad Todos",
-                            margin:"0 0 0 50",
+                            margin:"0 0 0 10",
 hidden:true
-                        }
+                        },
+                        {
+                            xtype:"button",
+                            itemId:"btnimpTodosPadrones",
+                            text:"Imprimir todos los padrones",
+                            margin:"0 0 0 10"
+                        },
 
 
 

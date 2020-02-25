@@ -104,10 +104,11 @@ class Beneficiario extends CI_Controller {
     public function eliminar() {
         $info = $this->input->post("data");
         $data = json_decode($info);
-
         $arreglo["beneficiarioid"] = $data->beneficiarioid;
-        $rs = $this->beneficiario->eliminar($arreglo);
-        echo json_encode($rs);
+        if($data->beneficiarioid){
+            $rs = $this->beneficiario->eliminar($arreglo);
+            echo json_encode($rs);
+        }
     }
     public function centrossalud() {
         $rs = $this->beneficiario->centrosDeSalud();

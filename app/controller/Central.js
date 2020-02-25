@@ -21,9 +21,31 @@ Ext.define("ExtMVC.controller.Central", {
             },
             "centralgrid toolbar #btn_cetral_coordonadora":{
                 click : this.onClickAgregarCoordinadora
+            },
+            "centralgrid toolbar #btn_eliminar_central":{
+                click : this.onClickEliminarCentral
             }
 
         });
+    },
+    onClickEliminarCentral:function(b){
+        r  = b.up('centralgrid').getSelectionModel().getSelection()[0];
+        if(r){
+            Ext.MessageBox.confirm('Eliminar Central', 'Desea eliminar la central?', function(btn){
+                if(btn == 'yes'){
+                    Ext.Ajax.request({
+                        url: 'resources/api/central/eliminarcentral',
+                        params: {
+                            idcentral: r.get('centralid'),
+                        },
+                        success: function(response){
+                            Ext.ComponentQuery.query('#centralgrid')[0].getStore().load();
+                            w.close();
+                        }
+                    });
+                }
+            });
+        }
     },
     onClickAgregarCoordinadora:function(btn){
         r  = btn.up('centralgrid').getSelectionModel().getSelection()[0];

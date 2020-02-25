@@ -37,7 +37,9 @@ Ext.define("ExtMVC.controller.Reporte", {
             /*"reporterequerimientoineipanel button#btnimprimir3":{
                 click:this.btnimprimir3_onClick
             }*/
-
+            "reportesociopanel button#btnimpTodosPadrones": {
+                click: this.btnimprimirTodosPadrones_onClick
+            },
 
 
 
@@ -83,12 +85,28 @@ Ext.define("ExtMVC.controller.Reporte", {
         var comiteid = btn.up("panel").down("#comiteid").getValue();
         var comite = btn.up("panel").down("#comite").getValue();
         var ubicacion = btn.up("panel").down("#ubicacion").getValue();
-
+        //alert( "resources/api/reporte/imprimirComitePorCentral?=" + centralid + "&central=" + central + "&comiteid=" + comiteid + "&comite=" + comite+"&ubicacion="+ubicacion);
+        //return false;
         var panel = btn.up("panel");
         panel.removeAll();
         panel.add({
             xtype: "uxiframe",
-            src: "resources/api/reporte/imprimirComitePorCentral?=" + centralid + "&central=" + central + "&comiteid=" + comiteid + "&comite=" + comite+"&ubicacion="+ubicacion
+            src: "resources/api/reporte/imprimirComitePorCentral?centraid=" + centralid + "&central=" + central + "&comiteid=" + comiteid + "&comite=" + comite+"&ubicacion="+ubicacion
+        });
+    },
+    btnimprimirTodosPadrones_onClick: function (btn, e, opc) {
+        var centralid = btn.up("panel").down("#centralid").getValue();
+        var central = btn.up("panel").down("#central").getValue();
+        var comiteid = btn.up("panel").down("#comiteid").getValue();
+        var comite = btn.up("panel").down("#comite").getValue();
+        var ubicacion = btn.up("panel").down("#ubicacion").getValue();
+        //alert( "resources/api/reporte/imprimirComitePorCentral?centralid=" + centralid + "&central=" + central + "&comiteid=" + comiteid + "&comite=" + comite+"&ubicacion="+ubicacion);
+        //return false;
+        var panel = btn.up("panel");
+        panel.removeAll();
+        panel.add({
+            xtype: "uxiframe",
+            src: "resources/api/reporte/imprimirComitePorCentralTodos?centralid=" + centralid + "&central=" + central + "&comiteid=" + comiteid + "&comite=" + comite+"&ubicacion="+ubicacion
         });
     }
 

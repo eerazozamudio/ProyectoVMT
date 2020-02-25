@@ -63,7 +63,7 @@ Ext.define("ExtMVC.view.reporte.ReporteRequerimientoIneiPanel",{
                             itemId:"btnimprimir3",
                             text:"Imprimir Canttidad Todos",
                             margin:"0 0 0 50",
-hidden:true
+                            hidden:true
                         }
 
 

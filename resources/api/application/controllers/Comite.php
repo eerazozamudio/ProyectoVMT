@@ -26,14 +26,17 @@ class Comite extends CI_Controller {
     }
     public function eliminar(){
         $arreglo["comiteid"] = $this->input->post('comiteid',0);
-        $rs = $this->comite->eliminar($arreglo);
-        echo json_encode($rs);
+        if($this->input->post('comiteid',0)!=0){
+            $rs = $this->comite->eliminar($arreglo);
+            echo json_encode($rs);
+        }
     }
     public function listaPorCentral() {
         $info = $this->input->get("data");
         $data = json_decode($info);
         $arreglo["centralid"] = $data->centralid;
         $arreglo["cadena"] = $data->cadena;
+        
         $rs = $this->comite->listaPorCentral($arreglo);
         echo json_encode($rs);
     }

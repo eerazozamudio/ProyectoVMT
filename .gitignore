@@ -1,4 +1,6 @@
-
-build
-resources/api/application/temp
+build/.sass-cache/
+build/development/
+build/production/
+build/temp/
+resources/api/application/temp/*.*
 .vscode

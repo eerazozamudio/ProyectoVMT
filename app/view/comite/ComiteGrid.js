@@ -69,7 +69,8 @@
                    //iconCls:"icon-buscar",
                    margin:"0 0 0 5",
                    fixed:true
-               }
+               },
+               
             ]
         }
     ],

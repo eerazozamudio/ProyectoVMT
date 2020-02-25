@@ -15,6 +15,7 @@ class Comite_model extends CI_Model {
         left join central c on c.centralid = co.centralid
         LEFT JOIN coordinador cod on cod.idcoor = co.idcoor
         where co.estado=1 and co.codigointerno like ? and  co.centralid=?  order by co.codigointerno";
+        
         $param["codigointerno"] = '%' . $arreglo["cadena"] . '%';
         $param["centralid"] = $arreglo["centralid"];
         $rs = $this->db->query($sql, $param);

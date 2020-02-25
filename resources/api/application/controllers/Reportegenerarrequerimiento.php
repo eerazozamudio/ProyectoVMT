@@ -749,9 +749,10 @@ class Reportegenerarrequerimiento extends CI_Controller {
         $centralid = $this->input->get("id");
         $rscentral = $this->central->listaXId(array("centralid" => $centralid));
         $rs = $this->reportegenerarrequerimiento->generarRequerimiento(array("centralid" => $centralid));
+        
         $cordinadora=$rs["data"][0]->supervisor;
         $cordinadora_dni=$rs["data"][0]->dnisuper;
-    
+        
         $fpdf = new FPDF("L", "mm", "A4");
         $fpdf->SetAutoPageBreak(true, 70);
         $fpdf->AddPage();

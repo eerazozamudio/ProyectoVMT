@@ -16,7 +16,7 @@
                 {
                     text :'Agregar Coordinadora',
                     itemId :'btn_cetral_coordonadora'
-                }
+                },
                /* {
                     xtype: "button",
                     text: "Nuevo",
@@ -36,14 +36,14 @@
                 },
                 {
                     xtype: "tbseparator"
-                },
+                },*/
                 {
                     xtype: "button",
                     text: "Eliminar",
                     itemId: "btn_eliminar_central",
                     //iconCls: "icon-delete",
                    
-                }*/
+                }
                
             ]
         }

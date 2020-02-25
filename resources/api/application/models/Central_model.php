@@ -16,7 +16,12 @@ class Central_model extends CI_Model{
         return $data;
 
     }
-
+    function validar($data){
+        $sql="call sp_validar_usuario(?,?)";
+        $rs=$this->db->query($sql,$data);
+        $data["data"] = $rs->result();
+        return $data;
+    }
     function listaXId($arreglo){
         $array[]=$arreglo["centralid"];
         $sql="select centralid,descripcion from central where centralid=?";
@@ -52,6 +57,12 @@ class Central_model extends CI_Model{
     }
     function centralActualizarCoordinador($arreglo){
         $sql="UPDATE central  SET idcoorcentral=? WHERE  centralid =?";
+        $rs=$this->db->query($sql,$arreglo);
+        $data["success"] = TRUE;        
+        return $data; 
+    }
+    function centralEliminar($arreglo){
+        $sql="UPDATE central  SET estado=0 WHERE  centralid =?";
         $rs=$this->db->query($sql,$arreglo);
         $data["success"] = TRUE;        
         return $data; 

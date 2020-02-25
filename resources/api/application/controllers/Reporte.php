@@ -361,12 +361,12 @@ class Reporte extends CI_Controller {
     }
     public function imprimirComitePorCentral() {
 
-        $central = $this->input->get("central");
-        $comite = $this->input->get("comite");
+        $central   = $this->input->get("central");
+        $comite    = $this->input->get("comite");
         $ubicacion = $this->input->get("ubicacion");
-        $comiteid = $this->input->get("comiteid");
+        $comiteid  = $this->input->get("comiteid");
         $arreglo["comiteid"] = $comiteid;
-        $rssocio = $this->socio->listaSocioPorComite($arreglo);
+        $rssocio   = $this->socio->listaSocioPorComite($arreglo);
         $rstotalbeneficiario = $this->beneficiario->sumaBeneficiariosPorComite($arreglo);
         $totalbeneficiario = $rstotalbeneficiario["data"]["suma"];
         
@@ -395,6 +395,106 @@ class Reporte extends CI_Controller {
         $contador = 0;
         foreach ($rssocio["data"] as $rowsocio) {
 
+            $fpdf->setFont("Arial", "B", 8);
+            $fpdf->SetX(10);
+            $fpdf->Cell(90, 5, "SOCIO", 1, 0, "L");
+            $fpdf->Cell(20, 5, "DNI", 1, 0, "L");
+            $fpdf->Cell(85, 5, "DIRECCION", 1, 1, "L");
+
+            $fpdf->setFont("Arial", "", 8);
+
+            $fpdf->Cell(90, 5, $rowsocio->apepater . " " . $rowsocio->apemater . " " . $rowsocio->nombre, 0, 0, "L");
+            $fpdf->Cell(20, 5, $rowsocio->dni, 0, 0, "L");
+            $fpdf->Cell(80, 5, $rowsocio->observacion, 0, 1, "L");
+
+            $fpdf->SetX(15);
+            $fpdf->setFont("Arial", "B", 8);
+            $fpdf->Cell(10, 5, "ITEM", 1, 0, "L");
+            $fpdf->Cell(130,5, "BENEFICIARIO", 1, 0, "L");
+            $fpdf->Cell(20, 5, "DNI", 1, 0, "L");
+            $fpdf->Cell(20, 5, "FECHA NACI.", 1, 0, "L");
+            $fpdf->Cell(10, 5, "EDAD", 1, 1, "L");
+
+            $fpdf->setFont("Arial", "", 8);
+            $rsbeneficiario = $this->beneficiario->listaPorSocio($rowsocio->socioid);
+
+            foreach ($rsbeneficiario["data"] as $rowbeneficiario) {
+                $contador++;
+                $fpdf->SetX(15);
+                $fpdf->Cell(10, 4, $contador, 0, 0, "L");
+                $fpdf->Cell(130,4,utf8_decode($rowbeneficiario->apepater . " " . $rowbeneficiario->apemater . " " . $rowbeneficiario->nombre), 0, 0, "L");
+                $fpdf->Cell(20, 4, $rowbeneficiario->dni, 0, 0, "L");
+                $fpdf->Cell(20,4,$rowbeneficiario->fechanaci,0,0,"L");
+                $fpdf->Cell(10, 4, $rowbeneficiario->edad, 0, 1, "L");
+
+            }
+            $fpdf->Ln(5);
+        }
+
+
+
+        $fpdf->Output();
+    }
+    public function imprimirComitePorCentralTodos() {
+
+        $central   = $this->input->get("central");
+        $comite    = $this->input->get("comite");
+        $ubicacion = $this->input->get("ubicacion");
+        $comiteid  = $this->input->get("comiteid");
+        $centralid  = $this->input->get("centralid");
+        
+        $arreglo["centralid"]   = $centralid;
+        $rssocio                = $this->socio->listaSocioPorCentral($arreglo);
+        
+        $rstotalbeneficiario    = 0; // $this->beneficiario->sumaBeneficiariosPorComite($arreglo);
+        $totalbeneficiario      = $rstotalbeneficiario["data"]["suma"];
+        
+        $titulo = "PADRON DE SOCIOS POR CENTRO DE ACOPIO Y COMITES - PROGRAMA DE VASO DE LECHE";
+
+        $fpdf = new FPDF("P", "mm", "A4");
+        //$fpdf->SetMargins(30, 15 , 30);
+       // $fpdf->SetAutoPageBreak(true, 1);
+        
+        $cantidad=$rssocio['data'][0]->tot;
+        $idcomite=$rssocio['data'][0]->comiteid;
+        $fpdf->AddPage();
+        ///$fpdf->AliasNbPages();
+        $fpdf->SetMargins(10, 25, 10);
+        //$fpdf->SetAutoPageBreak(true, 11.3);
+        $fpdf->setFont("Arial", "B", 10);
+        $fpdf->cell(0, 8, $titulo, 0, 0, "C");
+        $fpdf->Ln(7);
+        $fpdf->setFont("Arial", "B", 8);
+        $fpdf->Cell(20, 8, $central, 0, 1, "L");
+        //$fpdf->Ln(5);
+        $fpdf->SetXY(12, 20);
+        $fpdf->Cell(20, 8, "COMITE : ", 0, 0, "L");
+        $fpdf->Cell(35, 8, $rssocio["data"][0]->codigointerno, 0, 0, "L");
+        $fpdf->Cell(25, 8, "UBICACION : ", 0, 0, "L");
+        $fpdf->Cell(60, 8, '', 0, 0, "L");
+        $fpdf->Cell(40, 8, "TOTAL BENEFICIARIOS : ", 0, 0, "L");
+        $fpdf->Cell(0, 8, $cantidad, 0, 1, "L");
+        $contador = 0;
+        $idcomite =$rssocio["data"][0]->comiteid; 
+        foreach ($rssocio["data"] as $rowsocio) {
+            if($idcomite!=$rowsocio->comiteid){
+                $fpdf->AddPage();
+                $idcomite =$rowsocio->comiteid; 
+                $fpdf->setFont("Arial", "B", 10);
+                $fpdf->cell(0, 8, $titulo, 0, 0, "C");
+                $fpdf->Ln(7);
+                $fpdf->setFont("Arial", "B", 8);
+                $fpdf->Cell(20, 8, $central, 0, 1, "L");
+                $fpdf->Cell(20, 8, "COMITE : ", 0, 0, "L");
+                $fpdf->Cell(35, 8, $rowsocio->codigointerno, 0, 0, "L");
+                $fpdf->Cell(25, 8, "UBICACION : ", 0, 0, "L");
+                $fpdf->Cell(60, 8, $ubicacion, 0, 0, "L");
+                $fpdf->Cell(40, 8, "TOTAL BENEFICIARIOS : ", 0, 0, "L");
+                $fpdf->Cell(0, 8,$rowsocio->tot, 0, 1, "L");
+                $contador = 0;
+                
+                
+            }
             $fpdf->setFont("Arial", "B", 8);
             $fpdf->SetX(10);
             $fpdf->Cell(90, 5, "SOCIO", 1, 0, "L");
